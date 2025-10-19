@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_RIZKIMAULANA
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "22088:5432"
+    networks:
+      - database_network
+      
+  pgadmin:
+    image: dpage/pgadmin4 #
+    container_name: pgadmin_RIZKIMAULANA
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    ports:
+      - "44088:80"
+    networks:
+      - database_network
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
+  pgadmin_data:
+
+networks:
+  database_network:
+    driver: bridge

@@ -1,0 +1,9 @@
+--BERHASIL
+SELECT * FROM SALAM.mahasiswas;
+
+--GAGAL KARENA TIDAK BISA INSERT HANYA BISA SELECT
+INSERT INTO SALAM.mahasiswas (nim, nama, email, program_studi, tahun_angkatan)
+VALUES ('123005', 'User B', 'b@bi.com', 'SI', 2024);
+
+--GAGAL KARENA TIDAK BISA DELETE HANYA BISA SELECT
+DELETE FROM SALAM.mahasiswas WHERE nim='1237050088';
